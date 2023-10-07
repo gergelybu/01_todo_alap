@@ -1,19 +1,20 @@
+import megjSor from "./megjSor.js";
+
 class TodoView {
+  #LISTA = {};
   constructor(LISTA, szuloElem) {
-    this.LISTA = LISTA;
+    this.#LISTA = LISTA;
     this.szuloElem = szuloElem;
+    szuloElem.append('<table class="table table-striped table-dark">');
+    this.tablaElem = szuloElem.children("table");
     let txt = this.htmlOsszeallit(LISTA);
     this.szuloElem.html(txt);
   }
 
   htmlOsszeallit() {
-    let txt = "<table>";
-    for (let index = 0; index < this.LISTA.length; index++) {
-      const element = this.LISTA[index];
-      txt += `<tr><td>${element}</td></tr>`;
+    for (let index = 0; index < this.#LISTA.length; index++) {
+      new megjSor(this.#LISTA[index], this.tablaElem);
     }
-    txt += "</table>";
-    return txt;
   }
 }
 
